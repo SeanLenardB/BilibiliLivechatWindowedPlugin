@@ -1,0 +1,31 @@
+﻿<Window x:Class="BilibiliLivechatWindowedPlugin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BilibiliLivechatWindowedPlugin"
+        mc:Ignorable="d"
+        Title="Bilibili Livechat Plugin Windowed" Height="800" Width="1500" FontFamily="Bahnschrift" 
+        FontSize="15" Background="Gray" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DockPanel Margin="10">
+            <DockPanel DockPanel.Dock="Top" Margin="0 0 0 10">
+                <Label FontSize="20">直播间ID</Label>
+                <TextBox DockPanel.Dock="Left" x:Name="inputboxLiveId" VerticalAlignment="Center" Width="150" FontSize="20"></TextBox>
+                <Button DockPanel.Dock="Left" x:Name="buttonAcceptDanmaku" Margin="100 0 0 0" Width="180" VerticalAlignment="Center" 
+                        FontSize="20" Click="buttonAcceptDanmaku_Click">开始接收弹幕</Button>
+                <Button DockPanel.Dock="Left" x:Name="buttonAcceptCommission" Margin="20 0 0 0" Width="180" VerticalAlignment="Center" FontSize="20" 
+                        Click="buttonAcceptCommission_Click">开启点歌功能</Button>
+
+                <Button DockPanel.Dock="Right" Margin="80 0 0 0" Width="100" 
+                        VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Right" Click="ClearLogs">清除日志</Button>
+                <Button DockPanel.Dock="Right" x:Name="buttonNextCommission" Margin="20 0 0 0" Width="150" 
+                        VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Right" Click="NextSongButtonClick"
+                        Visibility="Hidden" IsEnabled="False">下一首歌</Button>
+                <Label DockPanel.Dock="Right" x:Name="labelRemainingCommissions" VerticalAlignment="Center" FontSize="20"
+                       HorizontalContentAlignment="Right" Visibility="Hidden" IsEnabled="False">当前无剩余点歌</Label>
+            </DockPanel>
+            <RichTextBox x:Name="logbox" Background="Black" Foreground="LightGray" IsReadOnly="True"></RichTextBox>
+        </DockPanel>
+    </Grid>
+</Window>
