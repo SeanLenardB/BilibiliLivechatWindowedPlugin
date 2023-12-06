@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -22,6 +23,8 @@ namespace BilibiliLivechatWindowedPlugin
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			System.Net.ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 		}
 
 		static bool isCommissionEnabled = false;
@@ -29,12 +32,13 @@ namespace BilibiliLivechatWindowedPlugin
 		static Tuple<string?, string?, string?>? lastMessage = null;
 		static Queue<Tuple<string, string, string>> songs = new();
 
+		static HttpClient client = new(new HttpClientHandler() { UseProxy = false });
 		private void BilibiliDanmuLookup(string roomid)
 		{
 			new Thread(() =>
 			{
 
-				HttpClient client = new(new HttpClientHandler() { UseProxy = false });
+				
 				new Thread(async () =>
 				{
 					while (!isDown)
@@ -204,6 +208,13 @@ namespace BilibiliLivechatWindowedPlugin
 				Log("点歌清单已经为空!");
 			}
 			labelRemainingCommissions.Content = songs.Count > 0 ? $"当前剩余{songs.Count}首" : $"当前无剩余点歌";
+		}
+
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			isDown = true;
+			client.Dispose();
+			File.Delete(@"C:\AdofaiExternalPlugins\Connection.txt");
 		}
 	}
 

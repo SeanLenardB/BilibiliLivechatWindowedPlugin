@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BilibiliLivechatWindowedPlugin"
         mc:Ignorable="d"
         Title="Bilibili Livechat Plugin Windowed" Height="800" Width="1500" FontFamily="Bahnschrift" 
-        FontSize="15" Background="Gray" WindowStartupLocation="CenterScreen">
+        FontSize="15" Background="Gray" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <DockPanel Margin="10">
             <DockPanel DockPanel.Dock="Top" Margin="0 0 0 10">
